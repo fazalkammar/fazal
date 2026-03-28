@@ -1,0 +1,28 @@
+{
+  "expo": {
+    "name": "Todo Productivity",
+    "slug": "todo-productivity-app",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "backgroundColor": "#4F46E5",
+      "resizeMode": "contain"
+    },
+    "assetBundlePatterns": ["**/*"],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.fazal.todoproductivity"
+    },
+    "android": {
+      "adaptiveIcon": {
+        "backgroundColor": "#4F46E5"
+      },
+      "package": "com.fazal.todoproductivity"
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    }
+  }
+}
