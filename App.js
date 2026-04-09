@@ -1,9 +1,7 @@
 import React from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { NavigationContainer } from '@react-navigation/native';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { Ionicons } from '@expo/vector-icons';
 import { TodoProvider } from './src/context/TodoContext';
 import HomeScreen from './src/screens/HomeScreen';
 import AddTaskScreen from './src/screens/AddTaskScreen';
