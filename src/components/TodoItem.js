@@ -1,6 +1,5 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
 import { useTodos } from '../context/TodoContext';
 
 const priorityColors = {
@@ -19,7 +18,7 @@ export default function TodoItem({ todo, onPress }) {
         style={[styles.checkbox, todo.completed && styles.checkboxChecked]}
         onPress={() => toggleTodo(todo.id)}
       >
-        {todo.completed && <Ionicons name="checkmark" size={16} color="#fff" />}
+        {todo.completed && <Text style={styles.checkIcon}>✓</Text>}
       </TouchableOpacity>
 
       <View style={styles.content}>
@@ -42,7 +41,7 @@ export default function TodoItem({ todo, onPress }) {
       </View>
 
       <TouchableOpacity style={styles.deleteBtn} onPress={() => deleteTodo(todo.id)}>
-        <Ionicons name="trash-outline" size={18} color="#94A3B8" />
+        <Text style={styles.deleteIcon}>✕</Text>
       </TouchableOpacity>
     </TouchableOpacity>
   );
@@ -75,6 +74,11 @@ const styles = StyleSheet.create({
   checkboxChecked: {
     backgroundColor: '#6366F1',
     borderColor: '#6366F1',
+  },
+  checkIcon: {
+    color: '#fff',
+    fontSize: 14,
+    fontWeight: '700',
   },
   content: {
     flex: 1,
@@ -124,5 +128,10 @@ const styles = StyleSheet.create({
   deleteBtn: {
     padding: 6,
     marginLeft: 8,
+  },
+  deleteIcon: {
+    fontSize: 16,
+    color: '#94A3B8',
+    fontWeight: '600',
   },
 });

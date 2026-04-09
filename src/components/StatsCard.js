@@ -1,12 +1,11 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
 
-export default function StatsCard({ icon, label, value, color }) {
+export default function StatsCard({ emoji, label, value, color }) {
   return (
     <View style={[styles.card, { borderLeftColor: color }]}>
       <View style={[styles.iconWrap, { backgroundColor: color + '15' }]}>
-        <Ionicons name={icon} size={20} color={color} />
+        <Text style={styles.emoji}>{emoji}</Text>
       </View>
       <Text style={styles.value}>{value}</Text>
       <Text style={styles.label}>{label}</Text>
@@ -35,6 +34,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     marginBottom: 8,
+  },
+  emoji: {
+    fontSize: 18,
   },
   value: {
     fontSize: 24,

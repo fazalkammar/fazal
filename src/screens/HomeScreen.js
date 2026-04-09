@@ -1,6 +1,5 @@
 import React from 'react';
 import { View, Text, FlatList, TouchableOpacity, StyleSheet } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
 import { useTodos } from '../context/TodoContext';
 import TodoItem from '../components/TodoItem';
 import StatsCard from '../components/StatsCard';
@@ -37,11 +36,11 @@ export default function HomeScreen({ navigation }) {
             </View>
 
             <View style={styles.statsRow}>
-              <StatsCard icon="list" label="Total" value={stats.total} color="#6366F1" />
+              <StatsCard emoji="📋" label="Total" value={stats.total} color="#6366F1" />
               <View style={{ width: 10 }} />
-              <StatsCard icon="checkmark-circle" label="Done" value={stats.completed} color="#10B981" />
+              <StatsCard emoji="✅" label="Done" value={stats.completed} color="#10B981" />
               <View style={{ width: 10 }} />
-              <StatsCard icon="time" label="Active" value={stats.active} color="#F59E0B" />
+              <StatsCard emoji="⏳" label="Active" value={stats.active} color="#F59E0B" />
             </View>
 
             <FilterChips />
@@ -59,7 +58,7 @@ export default function HomeScreen({ navigation }) {
         )}
         ListEmptyComponent={
           <View style={styles.emptyState}>
-            <Ionicons name="clipboard-outline" size={64} color="#D1D5DB" />
+            <Text style={styles.emptyIcon}>📝</Text>
             <Text style={styles.emptyTitle}>No tasks yet</Text>
             <Text style={styles.emptySubtitle}>Tap the + button to add your first task</Text>
           </View>
@@ -71,7 +70,7 @@ export default function HomeScreen({ navigation }) {
         onPress={() => navigation.navigate('AddTask')}
         activeOpacity={0.85}
       >
-        <Ionicons name="add" size={28} color="#fff" />
+        <Text style={styles.fabIcon}>+</Text>
       </TouchableOpacity>
     </View>
   );
@@ -114,6 +113,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingTop: 60,
   },
+  emptyIcon: {
+    fontSize: 64,
+  },
   emptyTitle: {
     fontSize: 20,
     fontWeight: '600',
@@ -140,5 +142,11 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.35,
     shadowRadius: 10,
     elevation: 8,
+  },
+  fabIcon: {
+    fontSize: 30,
+    color: '#fff',
+    fontWeight: '300',
+    marginTop: -2,
   },
 });

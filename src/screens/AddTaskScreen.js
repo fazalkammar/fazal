@@ -9,13 +9,12 @@ import {
   KeyboardAvoidingView,
   Platform,
 } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
 import { useTodos } from '../context/TodoContext';
 
 const priorities = [
-  { key: 'low', label: 'Low', color: '#10B981', icon: 'arrow-down' },
-  { key: 'medium', label: 'Medium', color: '#F59E0B', icon: 'remove' },
-  { key: 'high', label: 'High', color: '#EF4444', icon: 'arrow-up' },
+  { key: 'low', label: 'Low', color: '#10B981', symbol: '↓' },
+  { key: 'medium', label: 'Medium', color: '#F59E0B', symbol: '—' },
+  { key: 'high', label: 'High', color: '#EF4444', symbol: '↑' },
 ];
 
 export default function AddTaskScreen({ navigation }) {
@@ -44,7 +43,7 @@ export default function AddTaskScreen({ navigation }) {
       <ScrollView style={styles.scroll} showsVerticalScrollIndicator={false}>
         <View style={styles.header}>
           <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backBtn}>
-            <Ionicons name="arrow-back" size={24} color="#1E293B" />
+            <Text style={styles.backIcon}>←</Text>
           </TouchableOpacity>
           <Text style={styles.headerTitle}>New Task</Text>
           <View style={{ width: 40 }} />
@@ -114,11 +113,9 @@ export default function AddTaskScreen({ navigation }) {
                 ]}
                 onPress={() => setSelectedPriority(p.key)}
               >
-                <Ionicons
-                  name={p.icon}
-                  size={16}
-                  color={selectedPriority === p.key ? p.color : '#94A3B8'}
-                />
+                <Text style={[styles.prioritySymbol, { color: selectedPriority === p.key ? p.color : '#94A3B8' }]}>
+                  {p.symbol}
+                </Text>
                 <Text
                   style={[
                     styles.priorityLabel,
@@ -137,8 +134,7 @@ export default function AddTaskScreen({ navigation }) {
           onPress={handleAdd}
           disabled={!title.trim()}
         >
-          <Ionicons name="add-circle" size={22} color="#fff" />
-          <Text style={styles.addBtnText}>Add Task</Text>
+          <Text style={styles.addBtnText}>+ Add Task</Text>
         </TouchableOpacity>
       </ScrollView>
     </KeyboardAvoidingView>
@@ -172,6 +168,10 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.06,
     shadowRadius: 6,
     elevation: 2,
+  },
+  backIcon: {
+    fontSize: 22,
+    color: '#1E293B',
   },
   headerTitle: {
     fontSize: 20,
@@ -241,6 +241,10 @@ const styles = StyleSheet.create({
     borderColor: '#E2E8F0',
     backgroundColor: '#fff',
     gap: 6,
+  },
+  prioritySymbol: {
+    fontSize: 16,
+    fontWeight: '600',
   },
   priorityLabel: {
     fontSize: 14,

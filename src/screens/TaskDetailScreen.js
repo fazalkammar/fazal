@@ -1,6 +1,5 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, ScrollView, StyleSheet, Alert } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
 import { useTodos } from '../context/TodoContext';
 
 const priorityColors = {
@@ -54,11 +53,11 @@ export default function TaskDetailScreen({ route, navigation }) {
     <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
       <View style={styles.header}>
         <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backBtn}>
-          <Ionicons name="arrow-back" size={24} color="#1E293B" />
+          <Text style={styles.backIcon}>←</Text>
         </TouchableOpacity>
         <Text style={styles.headerTitle}>Task Details</Text>
         <TouchableOpacity onPress={handleDelete} style={styles.deleteBtn}>
-          <Ionicons name="trash-outline" size={22} color="#EF4444" />
+          <Text style={styles.deleteIcon}>🗑</Text>
         </TouchableOpacity>
       </View>
 
@@ -68,11 +67,7 @@ export default function TaskDetailScreen({ route, navigation }) {
             style={[styles.statusBadge, todo.completed ? styles.statusDone : styles.statusActive]}
             onPress={() => toggleTodo(todo.id)}
           >
-            <Ionicons
-              name={todo.completed ? 'checkmark-circle' : 'ellipse-outline'}
-              size={18}
-              color={todo.completed ? '#10B981' : '#F59E0B'}
-            />
+            <Text style={{ fontSize: 14 }}>{todo.completed ? '✅' : '⏳'}</Text>
             <Text style={[styles.statusText, { color: todo.completed ? '#10B981' : '#F59E0B' }]}>
               {todo.completed ? 'Completed' : 'In Progress'}
             </Text>
@@ -89,7 +84,7 @@ export default function TaskDetailScreen({ route, navigation }) {
 
         <View style={styles.detailRow}>
           <View style={styles.detailIcon}>
-            <Ionicons name="folder-outline" size={18} color="#6366F1" />
+            <Text style={{ fontSize: 16 }}>📁</Text>
           </View>
           <View>
             <Text style={styles.detailLabel}>Category</Text>
@@ -106,7 +101,7 @@ export default function TaskDetailScreen({ route, navigation }) {
 
         <View style={styles.detailRow}>
           <View style={styles.detailIcon}>
-            <Ionicons name="flag-outline" size={18} color={priorityColors[todo.priority]} />
+            <Text style={{ fontSize: 16 }}>🚩</Text>
           </View>
           <View>
             <Text style={styles.detailLabel}>Priority</Text>
@@ -118,7 +113,7 @@ export default function TaskDetailScreen({ route, navigation }) {
 
         <View style={styles.detailRow}>
           <View style={styles.detailIcon}>
-            <Ionicons name="calendar-outline" size={18} color="#64748B" />
+            <Text style={{ fontSize: 16 }}>📅</Text>
           </View>
           <View>
             <Text style={styles.detailLabel}>Created</Text>
@@ -129,7 +124,7 @@ export default function TaskDetailScreen({ route, navigation }) {
         {todo.completedAt && (
           <View style={styles.detailRow}>
             <View style={styles.detailIcon}>
-              <Ionicons name="checkmark-done-outline" size={18} color="#10B981" />
+              <Text style={{ fontSize: 16 }}>✅</Text>
             </View>
             <View>
               <Text style={styles.detailLabel}>Completed</Text>
@@ -143,13 +138,8 @@ export default function TaskDetailScreen({ route, navigation }) {
         style={[styles.toggleBtn, todo.completed && styles.toggleBtnUndo]}
         onPress={() => toggleTodo(todo.id)}
       >
-        <Ionicons
-          name={todo.completed ? 'refresh' : 'checkmark-circle'}
-          size={22}
-          color="#fff"
-        />
         <Text style={styles.toggleBtnText}>
-          {todo.completed ? 'Mark as Incomplete' : 'Mark as Complete'}
+          {todo.completed ? '↩ Mark as Incomplete' : '✓ Mark as Complete'}
         </Text>
       </TouchableOpacity>
     </ScrollView>
@@ -188,6 +178,10 @@ const styles = StyleSheet.create({
     shadowRadius: 6,
     elevation: 2,
   },
+  backIcon: {
+    fontSize: 22,
+    color: '#1E293B',
+  },
   headerTitle: {
     fontSize: 20,
     fontWeight: '700',
@@ -200,6 +194,9 @@ const styles = StyleSheet.create({
     backgroundColor: '#FEF2F2',
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  deleteIcon: {
+    fontSize: 18,
   },
   card: {
     backgroundColor: '#fff',
